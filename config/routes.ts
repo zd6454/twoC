@@ -76,12 +76,6 @@ export default [
     component: './Model',
   },
   {
-    path: '/storage',
-    name: 'storage',
-    icon: 'smile',
-    component: './Storage',
-  },
-  {
     path: '/opera',
     name: 'opera',
     icon: 'smile',
@@ -95,6 +89,11 @@ export default [
         path: '/opera/index',
         name: 'index',
         component: './Opera',
+      },
+      {
+        path: '/opera/jc',
+        name: 'jc',
+        component: './Opera/JTuopu',
       },
     ]
   },
@@ -128,13 +127,12 @@ export default [
         name: 'photo',
         component: './Hnor/Photo',
       },
+      {
+        path: '/hnor/file',
+        name: 'file',
+        component: './Hnor/File',
+      },
     ]
-  },
-  {
-    path: '/file',
-    name: 'file',
-    icon: 'smile',
-    component: './File',
   },
   // {
   //   path: '/admin',
