@@ -5,6 +5,7 @@ import ZTable from '../components/ZTable'
 import {Button,Space,Popover} from 'antd'
 import { PlusOutlined  } from '@ant-design/icons';
 import {history} from 'umi';
+import JMenu from '../components/JMenu'
 
 const Index=()=>{
     const actionRef = useRef()
@@ -117,6 +118,7 @@ const Index=()=>{
            search={true}
            rowkey = 'paperId'
         />
+        <JMenu />
     </PageContainer>
 }
 export default Index

@@ -27,7 +27,7 @@
         "src/.umi/*"
       ],
       "@umijs/max": [
-        "D:\\forWorks\\外包\\双碳系统\\system\\node_modules\\umi"
+        "D:\\study\\study_2\\CC\\twoC\\node_modules\\umi"
       ],
       "@umijs/max/typings": [
         "src/.umi/typings"

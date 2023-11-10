@@ -3,6 +3,7 @@ import { PageContainer, ProFormText} from '@ant-design/pro-components';
 import {Button,Space,Popover} from 'antd'
 import ZTable from '../components/ZTable'
 import ZModal from '../components/ZModal'
+import JMenu from '../components/JMenu'
 import { PlusOutlined  } from '@ant-design/icons';
 
 const Index=()=>{
@@ -176,6 +177,7 @@ const Index=()=>{
           handleFinish={handleFinish}
           createItem={createItem}
         />
+        <JMenu />
     </PageContainer>
 }
 export default Index

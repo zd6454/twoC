@@ -2,6 +2,7 @@ import React,{useState,useRef} from "react";
 import { PageContainer, ProForm ,ProFormSelect,ProFormUploadButton,ProFormText} from '@ant-design/pro-components';
 import {Card} from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
+import JMenu from '../components/JMenu'
 
 const Index=()=>{
    const formRef= useRef()
@@ -62,6 +63,7 @@ const Index=()=>{
             />
         </ProForm>
         </Card>
+        <JMenu />
     </PageContainer>
 }
 

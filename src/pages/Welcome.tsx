@@ -1,7 +1,8 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
 import { Card, theme, Space,Avatar,Image } from 'antd';
-import React from 'react';
+import React,{useEffect} from 'react';
+import store from '../utils/currentToken'
 import { UserOutlined } from '@ant-design/icons';
 import logo from './Asserts/logo.png'
 /**
@@ -29,7 +30,9 @@ const InfoCard: React.FC<{
         color: token.colorTextSecondary,
         lineHeight: '22px',
         padding: '16px 19px',
-        minWidth: '350px',
+        
+        minWidth: '65vw',
+        // minWidth: '350px',
         flex: 1,
       }}
     >
@@ -42,23 +45,25 @@ const InfoCard: React.FC<{
       >
         <div
           style={{
-            width: 48,
-            height: 48,
+            width: 80,
+            height: 30,
             lineHeight: '22px',
             backgroundSize: '100%',
             textAlign: 'center',
             padding: '8px 16px 16px 12px',
+            marginBottom:'20px',
             color: '#FFF',
             fontWeight: 'bold',
-            backgroundImage:
-              "url('https://gw.alipayobjects.com/zos/bmw-prod/daaf8d50-8e6d-4251-905d-676a24ddfa12.svg')",
+            backgroundColor: 'blue'
+            // backgroundImage:
+            //   "url('https://gw.alipayobjects.com/zos/bmw-prod/daaf8d50-8e6d-4251-905d-676a24ddfa12.svg')",
           }}
         >
           {index}
         </div>
         <div
           style={{
-            fontSize: '16px',
+            fontSize: '25px',
             color: token.colorText,
             paddingBottom: 8,
           }}
@@ -84,10 +89,12 @@ const InfoCard: React.FC<{
   );
 };
 
+
+
 const Welcome: React.FC = () => {
   const { token } = theme.useToken();
   const { initialState } = useModel('@@initialState');
-
+  
   const desc=()=>{
     return(
       <Space>
@@ -98,6 +105,7 @@ const Welcome: React.FC = () => {
   }
 
   return (
+    // 页面渲染的地方
     <PageContainer>
       <Card
         style={{

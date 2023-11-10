@@ -8,7 +8,7 @@ import { history, Link } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import React from 'react';
+import React , {useEffect,useState} from 'react';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
 import { Tabs } from 'antd';
 import token from './utils/currentToken';
@@ -70,6 +70,7 @@ export async function getInitialState(): Promise<{
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+
   return {
     actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     avatarProps: {
@@ -127,40 +128,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       return (
         <>
           {children}
-          {/* <SettingDrawer
-            disableUrlParams
-            enableDarkTheme
-            settings={initialState?.settings}
-            onSettingChange={(settings) => {
-              setInitialState((preInitialState) => ({
-                ...preInitialState,
-                settings,
-              }));
-            }}
-          /> */}
-          <div style={{position:"fixed",top:0,left:250,zIndex:200}}>
-          <Tabs
-              defaultActiveKey="1"
-              items={[
-                {
-                  label: 'coachDB',
-                  key: '1',
-                },
-                {
-                  label: '区块链浏览器',
-                  key: '2',
-                },
-                {
-                  label: 'grafarm监控',
-                  key: '3',
-                },
-                {
-                  label: '测试',
-                  key: '4',
-                },
-              ]}
-            />
-          </div>
+
+
         </>
       );
     },

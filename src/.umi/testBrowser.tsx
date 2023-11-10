@@ -3,14 +3,14 @@
 // DO NOT CHANGE IT MANUALLY!
 import React, { useEffect, useState } from 'react';
 import { ApplyPluginsType } from 'umi';
-import { renderClient, RenderClientOpts } from 'D:/forWorks/外包/双碳系统/system/node_modules/@umijs/renderer-react';
+import { renderClient, RenderClientOpts } from 'D:/study/study_2/CC/twoC/node_modules/@umijs/renderer-react';
 import { createHistory } from './core/history';
 import { createPluginManager } from './core/plugin';
 import { getRoutes } from './core/route';
 import type { Location } from 'history';
 
-import 'D:/forWorks/外包/双碳系统/system/src/global.less';
-import 'D:/forWorks/外包/双碳系统/system/src/global.tsx';
+import 'D:/study/study_2/CC/twoC/src/global.less';
+import 'D:/study/study_2/CC/twoC/src/global.tsx';
 import 'antd/dist/reset.css';
 const publicPath = '/';
 const runtimePublicPath = false;

@@ -4,6 +4,7 @@ import { PageContainer,ProForm,ProFormDatePicker, ProFormText,ProFormUploadButto
 import {Button,Card,Row,Col, Space} from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 import los from '../Asserts/logo.png'
+import JMenu from '../components/JMenu'
 
 const Index=()=>{
     const formRef1 = useRef()
@@ -104,6 +105,7 @@ const Index=()=>{
         </div>
        
       </Card>
+      <JMenu/>
     </PageContainer>
 }
 export default Index

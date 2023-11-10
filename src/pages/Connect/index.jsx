@@ -3,6 +3,7 @@ import React,{useEffect,useState} from "react";
 import { PageContainer} from '@ant-design/pro-components';
 import {Card,Row ,Col,Progress, Button ,Radio,Space } from 'antd';
 import ZCline from '../components/ZChart'
+import JMenu from '../components/JMenu'
 const Index=()=>{
 
     const [op1,setop1] = useState(1)
@@ -92,6 +93,7 @@ const Index=()=>{
         <Card style={{marginTop:20}} title={'训练进度'}>
           <Progress percent={50} status="active" />
         </Card>
+        <JMenu />
     </PageContainer>
 }
 export default Index
