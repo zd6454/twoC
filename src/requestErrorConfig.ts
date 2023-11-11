@@ -89,7 +89,7 @@ export const errorConfig: RequestConfig = {
   requestInterceptors: [
     (config: RequestOptions) => {
       // 拦截请求配置，进行个性化处理。
-      let url = 'https://lidengjia.hnufintech.cn'+config?.url
+      let url = 'https://119.29.232.85'+config?.url
       // const url = config?.url?.concat('?token = 123');
       return { ...config, url };
     },

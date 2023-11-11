@@ -6,6 +6,7 @@ const index=(props)=>{
     return <div>
               <ProTable
         headerTitle={title}
+        style={{marginBottom:20}}
         actionRef={actionRef}
         formRef={formRef}
         rowKey={rowkey}
