@@ -4,7 +4,7 @@ import React,{useRef} from 'react';
 const index=(props)=>{
     const {formRef=useRef(),search=true,rowkey,title,actionRef,rule,columns,setSelectedRows,toolBar} = props;
     return <div>
-              <ProTable
+        <ProTable
         headerTitle={title}
         style={{marginBottom:20}}
         actionRef={actionRef}

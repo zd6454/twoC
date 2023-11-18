@@ -45,7 +45,7 @@ const Index = () => {
     xField: 'year',
     yField: 'value',
     label: {},
-    width:700,
+    width: 800,
     height:200,
     point: {
       size: 5,

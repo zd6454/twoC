@@ -5,6 +5,7 @@ import {Card,Row ,Col,Progress, Button ,Radio,Space } from 'antd';
 import ZCline from '../components/ZChart'
 import JMenu from '../components/JMenu'
 const Index=()=>{
+    const [flag,setFlag] = useState('1')
 
     const [op1,setop1] = useState(1)
     const [op2,setop2] = useState(1)
@@ -17,54 +18,57 @@ const Index=()=>{
         option[type](e.target.value)
     }
     return <PageContainer>
-         <Row gutter={[16, 16]}>
-            <Col className="gutter-row" span={6}>
+         <Row gutter={[20, 20]}>
+            <Col className="gutter-row" span={10}>
                 <Card title='机器学习' >
                     <Radio.Group onChange={(e)=>onChange(1,e)} value={op1}>
-                        <Radio value={1}>机器方法1</Radio>
-                        <Radio value={2}>机器方法2</Radio>
-                        <Radio value={3}>机器方法3</Radio>
-                        <Radio value={4}>机器方法4</Radio>
+                        <Radio value={1}>决策树算法</Radio>
+                        <Radio value={2}>K-近邻算法</Radio>
+                        <Radio value={3}>随机森林</Radio>
+                        <Radio value={4}>朴素贝叶斯</Radio>
+                        <Radio value={5}>支持向量机</Radio>
                     </Radio.Group>
                 </Card>
             </Col>
-            <Col className="gutter-row" span={6}>
+            <Col className="gutter-row" span={10}>
                 <Card title='深度学习' >
                     <Radio.Group onChange={(e)=>onChange(2,e)} value={op2}>
-                        <Radio value={1}>机器方法1</Radio>
-                        <Radio value={2}>机器方法2</Radio>
-                        <Radio value={3}>机器方法3</Radio>
-                        <Radio value={4}>机器方法4</Radio>
+                        <Radio value={1}>卷积神经</Radio>
+                        <Radio value={2}>循环神经</Radio>
+                        <Radio value={3}>生成对抗网络</Radio>
+                        <Radio value={4}>强化学习</Radio>
+                        <Radio value={5}>长短期记忆网络</Radio>
                     </Radio.Group>
                 </Card>
             </Col>
-            <Col className="gutter-row" span={6}>
+            <Col className="gutter-row" span={10}>
                 <Card title='加密算法' >
                     <Radio.Group onChange={(e)=>onChange(3,e)} value={op3}>
-                        <Radio value={1}>机器方法1</Radio>
-                        <Radio value={2}>机器方法2</Radio>
-                        <Radio value={3}>机器方法3</Radio>
-                        <Radio value={4}>机器方法4</Radio>
+                        <Radio value={1}>DES方法</Radio>
+                        <Radio value={2}>MD5方法</Radio>
+                        <Radio value={3}>SHA-256</Radio>
+                        <Radio value={4}>AES方法</Radio>
+                        <Radio value={5}>RSA方法</Radio>
                     </Radio.Group>
                 </Card>
             </Col>
-            <Col className="gutter-row" span={6}>
+            <Col className="gutter-row" span={10}>
                 <Card title='联邦学习' >
                     <Radio.Group onChange={(e)=>onChange(4,e)} value={op4}>
-                        <Radio value={1}>机器方法1</Radio>
-                        <Radio value={2}>机器方法2</Radio>
-                        <Radio value={3}>机器方法3</Radio>
-                        <Radio value={4}>机器方法4</Radio>
+                        <Radio value={1}>FedProx方法</Radio>
+                        <Radio value={2}>FedNova方法</Radio>
+                        <Radio value={3}>FedAvg方法</Radio>
+                        <Radio value={4}>SCAFFOLD方法</Radio>
                     </Radio.Group>
                 </Card>
             </Col>
-            <Col className="gutter-row" span={6}>
+            <Col className="gutter-row" span={10}>
                 <Card title='聚合算法' >
                     <Radio.Group onChange={(e)=>onChange(5,e)} value={op5}>
-                        <Radio value={1}>机器方法1</Radio>
-                        <Radio value={2}>机器方法2</Radio>
-                        <Radio value={3}>机器方法3</Radio>
-                        <Radio value={4}>机器方法4</Radio>
+                        <Radio value={1}>直接聚合方法</Radio>
+                        <Radio value={2}>分组聚合方法</Radio>
+                        <Radio value={3}>窗口聚合方法</Radio>
+                        <Radio value={4}>多维聚合方法</Radio>
                     </Radio.Group>
                 </Card>
             </Col>
@@ -75,25 +79,25 @@ const Index=()=>{
             extra={<Space>
                 <Button type="default">数据上传</Button>
                 <Button type="primary">开始训练</Button>
-            </Space>
-           
-        }
-            >
+                </Space>}
+        >
             <Space>
                 <Card>
                   <ZCline />  
                 </Card>
-                <Card title={'参数查看'} style={{height:250,width:350,marginLeft:27}} bodyStyle={{display:'grid'}}>
-                    <Space> <h2>LOSS损失：</h2>0.998</Space>
-                    <Space> <h2>梯度情况：</h2>0.998</Space>
-                    <Space> <h2>训练伦次</h2>第三轮</Space>
-                </Card>
+                {/* <Card title={'参数查看'} style={{height:250,width:350,marginLeft:50}} bodyStyle={{display:'grid'}}>
+                    <Space> <h2>LOSS损失：0.998</h2></Space>
+                    <Space> <h2>梯度情况：0.998</h2></Space>
+                    <Space> <h2>训练轮次：第三轮</h2></Space>
+                </Card> */}
             </Space>
         </Card>
         <Card style={{marginTop:20}} title={'训练进度'}>
           <Progress percent={50} status="active" />
         </Card>
-        <JMenu />
+        <JMenu
+          flag={flag}  //传递参数
+        />
     </PageContainer>
 }
 export default Index

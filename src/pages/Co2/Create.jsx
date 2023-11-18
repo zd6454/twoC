@@ -6,6 +6,7 @@ import JMenu from '../components/JMenu'
 
 const Index=()=>{
    const formRef= useRef()
+   const [flag,setFlag] = useState('2')
 
     const onfinish=()=>{
 
@@ -63,7 +64,9 @@ const Index=()=>{
             />
         </ProForm>
         </Card>
-        <JMenu />
+        <JMenu
+          flag={flag}  //传递参数
+        />
     </PageContainer>
 }
 

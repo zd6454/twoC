@@ -9,6 +9,7 @@ import JMenu from '../components/JMenu'
 
 const Index=()=>{
     const actionRef = useRef()
+    const [flag,setFlag] = useState('2')
 
     const columns=[
         {
@@ -101,7 +102,9 @@ const Index=()=>{
            search={true}
            rowkey = 'paperId'
         />
-        <JMenu />
+        <JMenu
+          flag={flag}  //传递参数
+        />
     </PageContainer>
 }
 export default Index

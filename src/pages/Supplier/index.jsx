@@ -10,6 +10,7 @@ const Index=()=>{
     const actionRef = useRef()
     const formRef = useRef()
     const [createModalOpen,setModalOpen] = useState(false)
+    const [flag,setFlag] = useState('3')
 
     const content = (
         <Space>
@@ -177,7 +178,9 @@ const Index=()=>{
           handleFinish={handleFinish}
           createItem={createItem}
         />
-        <JMenu />
+        <JMenu
+          flag={flag}  //传递参数
+        />
     </PageContainer>
 }
 export default Index

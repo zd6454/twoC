@@ -10,6 +10,7 @@ const Index=()=>{
     const formRef1 = useRef()
     const formRef2 = useRef()
     const formRef3 = useRef()
+    const [flag,setFlag] = useState('4')
 
     //提交函数，点击按钮触发该事件
     const onfinish=(type,values)=>{
@@ -105,7 +106,9 @@ const Index=()=>{
         </div>
        
       </Card>
-      <JMenu/>
+      <JMenu
+        flag={flag}  //传递参数
+      />
     </PageContainer>
 }
 export default Index

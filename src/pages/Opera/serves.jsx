@@ -1,20 +1,36 @@
 import { request } from 'umi';
 import {message} from 'antd';
 
-export async function querAll(data) {
-  console.log(data,'data')
-    const params={
-      "Types":"admin",
-      "NetworkName":"lidengjia",
-      "ChannelName":"tsinghua"
-    }
-    return request('/hnuFinTechPlatform/operation/QueryNetwork', {
-      method: 'POST',
-      data:params
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
+// 查询所有网络
+export async function queryAllNetwork(){
+  const params={
+    "types": "admin",
   }
+  return request('/hnuFinTechPlatform/operation/queryAllNetwork', {
+      method: 'POST',
+      data: params
+  }).catch((error)=> {
+      console.log(error);
+    });
+}
+
+// 查询特定网络
+export async function querAll(data){
+    if(data.network){
+      const params={
+        "Types": "admin",
+        "NetworkName": data?.network,
+        "ChannelName": data?.channel
+      }
+      return request('/hnuFinTechPlatform/operation/queryNetwork', {
+          method: 'POST',
+          data:params
+      }).catch((error)=> {
+          // message.error('获取失败')
+          console.log(error);
+      });
+    }
+}
 
   export async function querBank(data) {
     const params={
@@ -70,16 +86,26 @@ export async function querAll(data) {
       });
   }
 
-export async function add(data) {
+export async function add(data1, data2) {
     const params ={
-        bankId:data.bankId,
-        title:data.title,
-        startDate:data.startDate,
-        endDate:data.endDate,
-        type:data.type,
-        questionNum:data.questionNum,
+        "types": "admin",
+        "networkName": data1.network,
+        "channelName": data1.channel,
+        "organizations":[
+          {
+            "name": data2.Name,
+            "domain": data2.Domain,
+            "peerCount": parseInt(data2.PeerCount),
+            "userCount": parseInt(data2.UserCount)
+          },
+        ],
+        "channelorganizations":[
+          {
+            "name": data2.Name
+          }
+        ],
     }
-    return request('/paper/add_paper', {
+    return request('/hnuFinTechPlatform/operation/createNetwork', {
       method: 'POST',
       data:params,
     }).catch((error)=> {
@@ -114,5 +140,42 @@ export async function add(data) {
       data:params,
     }).catch((error)=> {
         message.error('添加失败')
+      });
+  }
+
+  // 删除特定网络
+  export async function deleteNetwork(data) {
+    const params ={
+      "Types": "admin",
+      "NetworkName": data?.networkname,
+      "ChannelName": data?.channelname,
+    }
+    return request('/hnuFinTechPlatform/operation/clearNetwork', {
+      method: 'POST',
+      data: params,
+    }).catch((error)=> {
+        message.error('删除失败')
+      });
+  }
+
+  // 删除所有网络
+  export async function deleteAllNetwork() {
+    const params ={
+      "Types": "admin",
+    }
+    return request('/hnuFinTechPlatform/operation/clearAllNetwork', {
+      method: 'POST',
+      data: params,
+    }).catch((error)=> {
+        message.error('删除失败')
+      });
+  }
+
+  // 清理docker环境
+  export async function clearAllDocker() {
+    return request('/hnuFinTechPlatform/operation/clearDockerEnvironment', {
+      method: 'GET',
+    }).catch((error)=> {
+        message.error('删除失败')
       });
   }
