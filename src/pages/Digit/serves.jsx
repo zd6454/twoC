@@ -1,14 +1,39 @@
 import { request } from 'umi';
 import {message} from 'antd';
 
+//创建公私钥对
+export async function create(data) {
+  const form = new FormData()
+  form.append('userName',data.userName)
+  form.append('passWord',data.passWord)
+  return request('/hnuFinTechPlatform/storageBlokchain/rsakey', {
+    method: 'POST',
+    data:form,
+  }).catch((error)=> {
+      message.error('添加失败')
+    });
+}
+//注册用户
+export async function register(data) {
+  const form = new FormData()
+  form.append('userName',data.userName)
+  form.append('pk',data.pk)
+  form.append('types',data.types)
+  return request('/hnuFinTechPlatform/storageBlokchain/rsakey', {
+    method: 'POST',
+    data:form,
+  }).catch((error)=> {
+      message.error('添加失败')
+    });
+}
+
 export async function querAll(data) {
-    const params={
-        size:data?.pageSize||null,
-        page:data?.current||null
-    }
-    return request('/paper/query_all_paper', {
+  const form = new FormData()
+  form.append('userName',data.userName)
+  form.append('passWord',data.passWord)
+    return request('/hnuFinTechPlatform/storageBlokchain/keyShow', {
       method: 'POST',
-      data:params
+      data:form
     }).catch((error)=> {
         message.error('获取失败')
       });
@@ -68,22 +93,6 @@ export async function querAll(data) {
       });
   }
 
-export async function add(data) {
-    const params ={
-        bankId:data.bankId,
-        title:data.title,
-        startDate:data.startDate,
-        endDate:data.endDate,
-        type:data.type,
-        questionNum:data.questionNum,
-    }
-    return request('/paper/add_paper', {
-      method: 'POST',
-      data:params,
-    }).catch((error)=> {
-        message.error('添加失败')
-      });
-  }
 
   export async function update(data) {
     const params ={

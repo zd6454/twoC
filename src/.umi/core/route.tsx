@@ -32,8 +32,8 @@ export async function getRoutes() {
 '22': React.lazy(() => import(/* webpackChunkName: "p__Hnor__File__index" */'@/pages/Hnor/File/index.jsx')),
 '23': React.lazy(() => import( './EmptyRoute')),
 '24': React.lazy(() => import(/* webpackChunkName: "p__404" */'@/pages/404.tsx')),
-'ant-design-pro-layout': React.lazy(() => import(/* webpackChunkName: "umi__plugin-layout__Layout" */'D:/study/study_2/CC/twoC/src/.umi/plugin-layout/Layout.tsx')),
-'umi/plugin/openapi': React.lazy(() => import(/* webpackChunkName: "umi__plugin-openapi__openapi" */'D:/study/study_2/CC/twoC/src/.umi/plugin-openapi/openapi.tsx')),
+'ant-design-pro-layout': React.lazy(() => import(/* webpackChunkName: "umi__plugin-layout__Layout" */'D:/forWorks/外包/双碳系统/system2/twoC/src/.umi/plugin-layout/Layout.tsx')),
+'umi/plugin/openapi': React.lazy(() => import(/* webpackChunkName: "umi__plugin-openapi__openapi" */'D:/forWorks/外包/双碳系统/system2/twoC/src/.umi/plugin-openapi/openapi.tsx')),
 },
   };
 }

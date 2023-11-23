@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 
 const Index=(props)=>{
     const {formRef,modalType,createModalOpen,handleModalOpen,handleFinish, createItem}=props;
-    const title = modalType==='create'?'创建题库':'修改题库';
+    const title = modalType==='create'?'创建':'修改';
     return <div>
         <ModalForm
           title={title}

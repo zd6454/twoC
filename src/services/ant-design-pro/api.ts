@@ -28,7 +28,7 @@ export async function login(body: API.LoginParams, options?: { [key: string]: an
     "password":  body.password,
     "platformPassword": body.platformPassword
   }
-  return request<API.LoginResult>('/hnuFinTechPlatform/Login', {
+  return request<API.LoginResult>('/hnuFinTechPlatform/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export async function register(body: API.LoginParams, options?: { [key: string]:
     "typePassword": body.typePassword,
     "type":body.type
   }
-  return request<API.LoginResult>('/hnuFinTechPlatform/Register', {
+  return request<API.LoginResult>('/hnuFinTechPlatform/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
