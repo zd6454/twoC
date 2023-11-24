@@ -17,13 +17,13 @@ export async function create(data) {
 export async function register(data) {
   const form = new FormData()
   form.append('userName',data.userName)
-  form.append('pk',data.pk)
+  form.append('sk',data.sk)
   form.append('types',data.types)
   return request('/hnuFinTechPlatform/storageBlokchain/rsakey', {
     method: 'POST',
     data:form,
   }).catch((error)=> {
-      message.error('添加失败')
+      message.error('注册失败')
     });
 }
 
@@ -34,92 +34,61 @@ export async function querAll(data) {
     return request('/hnuFinTechPlatform/storageBlokchain/keyShow', {
       method: 'POST',
       data:form
+    })
+  }
+
+  export async function querPkBySk(data) {
+    const form = new FormData()
+    form.append('sk',data.sk)
+    return request('/hnuFinTechPlatform/storageBlokchain/rsakeyRestore', {
+      method: 'POST',
+      data:form
     }).catch((error)=> {
         message.error('获取失败')
       });
   }
 
-  export async function querBank(data) {
-    const params={
-        size:100||null,
-        page:1
-    }
-    return request('/question_bank/query_list', {
+  export async function querVideoAll(data) {
+    const form = new FormData()
+    form.append('sk',data.sk)
+    form.append('types',data.types)
+    return request('/hnuFinTechPlatform/storageBlokchain/queryVideoByUserName', {
       method: 'POST',
-      data:params
+      data:form
     }).catch((error)=> {
         message.error('获取失败')
       });
   }
-
-  export async function querquizs(data) {
-    const params={
-        id:data.id
-    }
-    return request('/paper/query_by_id', {
+  export async function querVideoByHash(data) {
+    const form = new FormData()
+    form.append('hash',data.hash)
+    form.append('types',data.types)
+    return request('/hnuFinTechPlatform/storageBlokchain/queryVideoByHash', {
       method: 'POST',
-      data:params
+      data:form
     }).catch((error)=> {
         message.error('获取失败')
       });
   }
-  export async function querrecords(data) {
-    const params={
-        id:data.id
-    }
-    return request('/record/query_by_paper_id', {
+  export async function querVideoByType(data) {
+    const form = new FormData()
+    form.append('types',data.types)
+    return request('/hnuFinTechPlatform/storageBlokchain/queryVideoByOrgName', {
       method: 'POST',
-      data:params
+      data:form
     }).catch((error)=> {
         message.error('获取失败')
       });
   }
-  export async function querranks(data) {
-    const params={
-        id:data.id
-    }
-    return request('/record/get_rank_by_paper_id', {
+  export async function uploadFile(data) {
+    const form = new FormData()
+    form.append('types',data.types)
+    form.append('sk',data.sk)
+    form.append('file',data.file)
+    return request('/hnuFinTechPlatform/storageBlokchain/videoUpload', {
       method: 'POST',
-      data:params
+      data:form
     }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-  export async function quernums(data) {
-    return request('/record/get_all_paper_finish_num', {
-      method: 'GET',
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-
-
-  export async function update(data) {
-    const params ={
-        paperId:data.paperId,
-        bankId:data.bankId,
-        title:data.title,
-        startDate:data.startDate,
-        endDate:data.endDate,
-        type:data.type,
-        questionNum:data.questionNum,
-    }
-    return request('/paper/update', {
-      method: 'POST',
-      data:params,
-    }).catch((error)=> {
-        message.error('添加失败')
-      });
-  }
-
-  export async function deletes(data) {
-    const params ={
-      id:data.id,
-    }
-    return request('/paper/delete', {
-      method: 'POST',
-      data:params,
-    }).catch((error)=> {
-        message.error('添加失败')
+        message.error('上传失败，请检查网络')
       });
   }
