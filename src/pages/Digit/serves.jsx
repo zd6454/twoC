@@ -19,7 +19,7 @@ export async function register(data) {
   form.append('userName',data.userName)
   form.append('sk',data.sk)
   form.append('types',data.types)
-  return request('/hnuFinTechPlatform/storageBlokchain/rsakey', {
+  return request('/hnuFinTechPlatform/storageBlokchain/registerUser', {
     method: 'POST',
     data:form,
   }).catch((error)=> {
@@ -28,6 +28,7 @@ export async function register(data) {
 }
 
 export async function querAll(data) {
+  console.log(data,123)
   const form = new FormData()
   form.append('userName',data.userName)
   form.append('passWord',data.passWord)
@@ -47,7 +48,15 @@ export async function querAll(data) {
         message.error('获取失败')
       });
   }
-
+  export async function querAccountByPk(data) {
+    const form = new FormData()
+    form.append('pk',data.pk)
+    form.append('types',data.types)
+      return request('/hnuFinTechPlatform/storageBlokchain/searchUser', {
+        method: 'POST',
+        data:form
+      })
+    }
   export async function querVideoAll(data) {
     const form = new FormData()
     form.append('sk',data.sk)
@@ -90,5 +99,16 @@ export async function querAll(data) {
       data:form
     }).catch((error)=> {
         message.error('上传失败，请检查网络')
+      });
+  }
+
+  export async function downloadFile(data) {
+    const form = new FormData()
+    form.append('filename',data.filename)
+    return request('/hnuFinTechPlatform/storageBlokchain/videoDownload', {
+      method: 'POST',
+      data:form
+    }).catch((error)=> {
+        message.error('下载失败')
       });
   }

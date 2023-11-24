@@ -1,9 +1,9 @@
 
 import React,{useEffect,useState,useRef} from "react";
-import { PageContainer,ProForm,ProFormDatePicker, ProFormText,ProFormUploadButton,ProFormTextArea} from '@ant-design/pro-components';
+import { PageContainer,ProForm,ProFormSelect, ProFormText,ProFormUploadButton,ProFormTextArea} from '@ant-design/pro-components';
 import {Button,Card,Row,Col, Space,message} from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
-import{create,register,querAll,querPkBySk,querVideoAll,querVideoByHash,querVideoByType, uploadFile} from './serves'
+import{create,register,querAll,querPkBySk,querVideoAll,querVideoByHash,querVideoByType, uploadFile,querAccountByPk,downloadFile} from './serves'
 import los from '../Asserts/logo.png'
 import JMenu from '../components/JMenu'
 import ZTable from '../components/ZTable'
@@ -22,12 +22,15 @@ const Index=()=>{
     const [searchInfo,setSearch] = useState({})
     const [pk,setPk] = useState('')
     const [videos,setVideos] = useState(null)
+    const [byaccount,setAccount] = useState('')
+    const [videoUrl,setVideoUrl] = useState('')
 
     const steps={
         [Ztype.CreatPk]:'创建公私钥对',
         [Ztype.Register]:'注册用户',
         [Ztype.SkToPk]:'私钥转公钥',
         [Ztype.PkGetSk]:'查询公私钥',
+        [Ztype.PkFindAccount]:'公钥查用户',
         [Ztype.VideoAll]:'私钥查询',
         [Ztype.VideoByHash]:'hash查询',
         [Ztype.VideoByType]:'组织查询',
@@ -37,6 +40,7 @@ const Index=()=>{
     [Ztype.Register]:register,
     [Ztype.SkToPk]:querPkBySk,
     [Ztype.PkGetSk]:null,
+    [Ztype.PkFindAccount]:querAccountByPk,
      //视频查询
      [Ztype.VideoAll]:querVideoAll,
      [Ztype.VideoByHash]:querVideoByHash,
@@ -45,9 +49,7 @@ const Index=()=>{
 
     //文件提交函数，点击按钮触发该事件
     const onfinish=async(values)=>{
-      values.types= token.getStore('type')
       values.file = values.file[0].originFileObj
-      console.log(values,'123',formRef2)
        const end = await uploadFile(values)
     }
     const columns=[
@@ -102,6 +104,25 @@ const Index=()=>{
             ],
           },
     ]
+    const typeSelect=(
+     <ProFormSelect 
+      name="types"
+      placeholder={'请选择账户类型'}
+      rules={[
+        {
+          required: true,
+          message:'请选择账户类型',
+        },
+      ]}
+      options={[ 'author1','author2','alibaba','baidu','tencent','jingdong'
+      ]}
+     />
+    )
+    const VideoItem=(
+      <video  loop  controls = {true}  style={{width:'100%',}} >
+          <source type='video/mp4' src={videoUrl}  />
+      </video>
+    )
     const Account=(<div>
             <ProFormText
                 name="userName"
@@ -148,6 +169,7 @@ const Index=()=>{
                   },
                 ]}
               />
+              {typeSelect}
        </div>,
        [Ztype.SkToPk]:<div>
          <ProFormTextArea 
@@ -163,8 +185,22 @@ const Index=()=>{
         <div>公钥：{pk}</div>
        </div>,
       [Ztype.PkGetSk]:Account,
-
-      [Ztype.VideoAll]: <ProFormTextArea 
+      [Ztype.PkFindAccount]:<div>
+          <ProFormTextArea 
+                name="pk"
+                placeholder={'请输入公钥'}
+                rules={[
+                {
+                    required: true,
+                    message:'请输入公钥',
+                },
+                ]}
+            />
+                {typeSelect}
+              <div>账号名：{byaccount}</div>
+      </div>,
+      [Ztype.VideoAll]:<div>
+           <ProFormTextArea 
                 name="sk"
                 placeholder={'请输入私钥'}
                 rules={[
@@ -173,8 +209,11 @@ const Index=()=>{
                     message:'请输入私钥',
                 },
                 ]}
-            /> ,
-      [Ztype.VideoByHash]:<ProFormText
+            />
+          {typeSelect}
+      </div>  ,
+      [Ztype.VideoByHash]:<div>
+          <ProFormText
                   name="hash"
                   placeholder={'请输入hash'}
                   rules={[
@@ -183,17 +222,11 @@ const Index=()=>{
                       message:'请输入hash',
                     },
                   ]}
-                />,
-      [Ztype.VideoByType]:<ProFormText
-                  name="type"
-                  placeholder={'请输入组织'}
-                  rules={[
-                    {
-                      required: true,
-                      message:'请输入组织',
-                    },
-                  ]}
-                />,
+                />
+                {typeSelect}
+        </div>,
+      [Ztype.VideoByType]:typeSelect,
+      [Ztype.VideoCheck] :VideoItem,
     }
     const toolBar=() => [
         <Button
@@ -240,12 +273,31 @@ const Index=()=>{
          }}
        >
          <PlusOutlined /> {'私钥查询'}
-  </Button>,
-      
+       </Button>,
+        <Button
+        type="primary"
+        key="primary"
+        onClick={()=>{
+           setIsModalOpen(true)
+           setModelType(Ztype.PkFindAccount)
+           modelRef?.current?.resetFields()
+           setAccount('')
+        }}
+      >
+        {'公钥查询用户'}
+      </Button>,
       ]
     const rule=async(params)=>{
+      console.log(searchInfo,'123')
         const end = await querAll(searchInfo)
-        return{ data:end}
+        let data={};
+        if(modelType==Ztype.PkGetSk){
+           data.data=end.message,
+           data.total=end.nrows
+        }else{
+          data.data=end;
+        }
+        return data
       }
 
       //复制到粘贴板
@@ -263,21 +315,26 @@ const Index=()=>{
         if(end.message){
             message.error(end.message)
            }else{
-            copyMethod(end.pk)
-            message.success('创建成功，公钥已复制到粘贴板')
+            copyMethod(end.sk)
+            message.success('创建成功，私钥已复制到粘贴板')
             setIsModalOpen(false)
             modelRef?.current?.resetFields()
            }
     }
     //处理函数
     const handleOk=async(values)=>{
-      values.types= token.getStore('type')
       if(modelType==Ztype.CreatPk){
+        values.types= token.getStore('type')
        const end = await queryMethod[modelType](values)
         handleEle1(end)
       }else if(modelType==Ztype.Register){
          const end = await queryMethod[modelType](values)
-
+         if(end.userName){
+          message.success('注册成功')
+          setIsModalOpen(false)
+         }else{
+          message.warning('注册出现问题，请查看')
+         }
       }else if(modelType==Ztype.SkToPk){
         const end = await queryMethod[modelType](values)
         setPk(end)
@@ -285,16 +342,23 @@ const Index=()=>{
         setSearch(values)
         actionRef.current.reload()
         setIsModalOpen(false)
+      } else if(modelType==Ztype.PkFindAccount){
+        const end = await queryMethod[modelType](values)
+        if(end){
+          setAccount(end)
+        }else{
+          setAccount('没有查询到，请确保公钥及组织正确')
+        }
+
       }else if(modelType==Ztype.VideoAll){
         const end = await queryMethod[modelType](values)
         setVideos(end)
         setIsModalOpen(false)
       }else if(modelType==Ztype.VideoByHash){
         const end = await queryMethod[modelType](values)
-        setVideos(end)
+        setVideos([end])
         setIsModalOpen(false)
       }else if(modelType==Ztype.VideoByType){
-        values.types= values.type
         const end = await queryMethod[modelType](values)
         setVideos(end)
         setIsModalOpen(false)
@@ -306,6 +370,7 @@ const Index=()=>{
     setModelType(type)
     modelRef?.current?.resetFields()
   }
+
   // console.log(formRef2)
     return <PageContainer
     content={'中间为三个并排的card，左边的card是文字存证，用户输入“作品名称”、“创作者”、“创作日期”，可产生对应hash值；同理，中间card是中型文件存储，产生hash和IPFS；右边card是大型文件存储，上传文件后，产生hash和HDFS。下边是效果展示，对上传的数据上面加一个湖南大学的章。'}
@@ -336,7 +401,6 @@ const Index=()=>{
                 <ProFormUploadButton
                     label='上传视频文件'
                     width="md"
-                    onChange={(e)=>{console.log(e,'change')}}
                     name="file"
                     rules={[
                       {
@@ -347,6 +411,7 @@ const Index=()=>{
                     max={1}
                     icon={<PlusOutlined />}
                 />
+                {typeSelect}
             </ProForm>  
         </Card>
       <ZTable
@@ -356,36 +421,42 @@ const Index=()=>{
            columns={columns}
            toolBar={toolBar}
            rule={rule}
-           search={true}
+           search={false}
            rowkey = 'ID'
         />
       <Card title={'效果展示'} style={{width:'100%',marginTop:20}}  extra={
         <Space>
-          <Button type="primary" onClick={()=>handleCheck(Ztype.VideoAll)} >私钥查询</Button>
+          <Button type="primary" onClick={()=>handleCheck(Ztype.VideoAll)} >私钥查询视频</Button>
           <Button type="primary" onClick={()=>handleCheck(Ztype.VideoByHash)}>hash查询</Button>
           <Button type="primary" onClick={()=>handleCheck(Ztype.VideoByType)}>组织查询</Button>
         </Space>
       }>
         <Row gutter={[16, 16]}>
-          <Col span={12}>
-          <Card title={'视频展示'} style={{width:500}} extra={<Space>
-                  <Button >获取IPFS下载路径</Button>
-                  <Button >复制hash</Button>
-               </Space>}>
-            <video  loop  controls = {true}  style={{width:'100%',}} >
-                    <source type='video/mp4' src={''}  />
-            </video>
-          </Card>
-          </Col>
-          {videos?.map((item)=>{
-            return <Col span={12}>
-                      <Card title={'视频展示'} style={{width:500}} extra={<Space>
-                              <Button >获取IPFS下载路径</Button>
-                              <Button >复制hash</Button>
+          {videos?.map((item,index)=>{
+            return <Col span={12} key={index}>
+                      <Card key={index} title={item.videoName} style={{width:500}} extra={<Space>
+                              <Button onClick={async()=>{
+                                 const end =await downloadFile({filename:item.videoName})
+                                //  videos[index].url=end;
+                                 const videoURL = new File([end],'file', {type: 'video/mp4' });;
+                                 const blob = new Blob([end], {type: 'video/mp4'});
+                                 console.log(videoURL,'videoURL',blob,end)
+                                  setVideoUrl(end)
+                                  setModelType(Ztype.VideoCheck)
+                                  setIsModalOpen(true)
+                              }}>播放视频</Button>
+                              <Button onClick={()=>{
+                                 copyMethod(item.txid)
+                                 message.success('下载路径已复制在粘贴板')
+                              }}>获取IPFS下载路径</Button>
+                              <Button onClick={()=>{
+                                copyMethod(item.videoCID)
+                                message.success('hash已复制在粘贴板')
+                              }}>复制hash</Button>
                           </Space>}>
-                            <video  loop  controls = {true}  style={{width:'100%',}} >
-                                    <source type='video/mp4' src={item.src}  />
-                            </video>
+                            <div>
+                              发布时间：{item.timestamp}
+                            </div>
                       </Card>
                 </Col>
           })}
