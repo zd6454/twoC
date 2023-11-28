@@ -5,6 +5,7 @@ import React,{useEffect} from 'react';
 import store from '../utils/currentToken';
 import { UserOutlined } from '@ant-design/icons';
 import logo from './Asserts/logo.png';
+import yuan from './Asserts/yuan.png';
 import m1 from './Asserts/images/m1.png';
 import m2 from './Asserts/images/m2.png';
 import m3 from './Asserts/images/m3.png';
@@ -163,6 +164,8 @@ const Welcome: React.FC = () => {
           >
             欢迎来到工商管理学院
           </div>
+            {/* <img  style={{left:10,top:0,width:1000}}   src={yuan} /> */}
+
             <p
             style={{
               fontSize: '15px',
@@ -170,13 +173,13 @@ const Welcome: React.FC = () => {
               lineHeight: '28px',
               marginTop: 16,
               marginBottom: 32,
-              width: '65%',
+              width: '75%',
             }}
           >
-            Ant Design Pro 是一个整合了 umi，Ant Design 和 ProComponents
-            的脚手架方案。致力于在设计规范和基础组件的基础上，继续向上构建，提炼出典型模板/业务组件/配套设计资源，进一步提升企业级中后台产品设计研发过程中的『用户』和『设计者』的体验。
+            湖南大学工商管理学院坐落于苍翠拱卫的岳麓山畔，毗邻传承千年中华文脉的岳麓书院，素有“千年学府，百年商学”之美誉。
+            始终坚持人才培养中心地位，加强商科建设和特色发展，做精本科教育，创新教学模式，不断提升新时代经世致用商学领军人才培养质量，全面推进建设中国特色世界一流商学院。
           </p>
-           <img  style={{position:'absolute',right:101,top:0,width:127}}   src={logo} />
+            <img  style={{position:'absolute',right:101,top:0,width:127}}   src={logo} />
           
           <div
             style={{

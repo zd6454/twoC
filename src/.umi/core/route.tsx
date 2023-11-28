@@ -36,6 +36,7 @@ export async function getRoutes() {
 '26': React.lazy(() => import(/* webpackChunkName: "p__404" */'@/pages/404.tsx')),
 'ant-design-pro-layout': React.lazy(() => import(/* webpackChunkName: "umi__plugin-layout__Layout" */'D:/forWorks/外包/双碳系统/system2/twoC/src/.umi/plugin-layout/Layout.tsx')),
 'umi/plugin/openapi': React.lazy(() => import(/* webpackChunkName: "umi__plugin-openapi__openapi" */'D:/forWorks/外包/双碳系统/system2/twoC/src/.umi/plugin-openapi/openapi.tsx')),
+
 },
   };
 }
