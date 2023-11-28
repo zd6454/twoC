@@ -6,8 +6,8 @@ import axios, {
   type AxiosRequestConfig,
   type AxiosResponse,
   type AxiosError,
-} from 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/axios';
-import useUmiRequest, { UseRequestProvider } from 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/@umijs/plugins/node_modules/@ahooksjs/use-request';
+} from 'D:/study/study_2/CC/twoC/node_modules/axios';
+import useUmiRequest, { UseRequestProvider } from 'D:/study/study_2/CC/twoC/node_modules/@umijs/plugins/node_modules/@ahooksjs/use-request';
 import { ApplyPluginsType } from 'umi';
 import { getPluginManager } from '../core/plugin';
 
@@ -26,7 +26,7 @@ import {
   PaginatedOptionsWithFormat,
   PaginatedParams,
   PaginatedResult,
-} from 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/@umijs/plugins/node_modules/@ahooksjs/use-request/es/types';
+} from 'D:/study/study_2/CC/twoC/node_modules/@umijs/plugins/node_modules/@ahooksjs/use-request/es/types';
 
 type ResultWithData< T = any > = { data?: T; [key: string]: any };
 

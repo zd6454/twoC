@@ -1,60 +1,62 @@
 import React from "react";
 import { PageContainer} from '@ant-design/pro-components';
 import { Button, Card ,Avatar,Row,Col, Space,Tag } from "antd";
+import {downloadQuery} from './serves';
 const { Meta } = Card;
-import JMenu from '../components/JMenu'
+import JMenu from '../components/JMenu';
+import p0 from './images/p0.jpg';
+import p1 from './images/p1.jpg';
+import p2 from './images/p2.jpg';
+import p3 from './images/p3.jpg';
 
 const Index=()=>{
     const data=[
         {
-            title:'高性能智能合约',
-            src:'连接',
-            author:'张三',
-            time:'2023/11/01',
+            title:'存件存证智能合约',
+            src: p0,
+            author:'admin',
+            time:'2023/11/28',
+            flag: 0,
         },
         {
-            title:'转账智能合约',
-            src:'连接',
-            author:'张三',
-            time:'2023/11/01',
+            title:'食品溯源智能合约',
+            src: p1,
+            author:'admin',
+            time:'2023/11/27',
+            flag: 1,
         },
         {
-            title:'UTXO智能合约',
-            src:'连接',
-            author:'张三',
-            time:'2023/11/01',
+            title:'零知识证明智能合约',
+            src: p2,
+            author:'admin',
+            time:'2023/11/27',
+            flag: 2,
         },
-        // {
-        //     title:'基于属性加密智能合约',
-        //     src:'连接',
-        //     author:'张三',
-        //     time:'2023/11/01',
-        // },
-        // {
-        //     title:'零知识证明智能合约',
-        //     src:'连接',
-        //     author:'张三',
-        //     time:'2023/11/01',
-        // },
-        // {
-        //     title:'模板一',
-        //     src:'连接',
-        //     author:'张三',
-        //     time:'2023/11/01',
-        // },
-        // {
-        //     title:'模板一',
-        //     src:'连接',
-        //     author:'张三',
-        //     time:'2023/11/01',
-        // },
-        // {
-        //     title:'模板一',
-        //     src:'连接',
-        //     author:'张三',
-        //     time:'2023/11/01',
-        // },
+        {
+            title:'状态转移智能合约',
+            src: p3,
+            author:'admin',
+            time:'2023/11/24',
+            flag: 3,
+        },
     ]
+    // 根据模板类型获取对应下载链接
+    const handleClick = (flag) => {
+        let param = "";
+        if(flag == 0){
+            param = "/hnuFinTechPlatform/smartContract/certificate";
+        }else if(flag == 1){
+            param = "/hnuFinTechPlatform/smartContract/foodTrace";
+        }else if(flag == 2){
+            param = "/hnuFinTechPlatform/smartContract/gnark";
+        }else if(flag == 3){
+            param = "/hnuFinTechPlatform/smartContract/stateTransfer";
+        }
+        if(param){
+            console.log(param)
+            downloadQuery(param);
+        }
+    }
     return <PageContainer>
         <Row gutter={[16,16]}>
             {data.map((item,index)=>
@@ -64,7 +66,7 @@ const Index=()=>{
                     // vw自适应
                     style={{width:'25vw'}} 
                     title={<Tag color="#f50" >{item.title}</Tag>} 
-                    extra={<Button type="primary" size="small">下载</Button>} 
+                    extra={<Button type="primary" size="small" onClick = {()=>handleClick(item.flag)}>下载</Button>} 
                     actions={ [<Meta
                         style={{alignContent:'center',textAlign:'left',marginLeft:25,fontWeight:650}}
                         avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />}
@@ -78,7 +80,8 @@ const Index=()=>{
                       />]}
                 
                 >
-                    {item.src}
+                    {/* {item.src} */}
+                    <img src={item.src} width="432px" height="300px"/>
                 </Card>
              </Col>
             )}
