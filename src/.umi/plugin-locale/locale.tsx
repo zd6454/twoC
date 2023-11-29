@@ -4,15 +4,15 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
 
-import moment from 'D:/study/study_2/CC/twoC/node_modules/dayjs';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/bn-bd';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/en';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/fa';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/id';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/ja';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/pt-br';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/zh-cn';
-import 'D:/study/study_2/CC/twoC/node_modules/dayjs/locale/zh-tw';
+import moment from 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/bn-bd';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/en';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/fa';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/id';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/ja';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/pt-br';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/zh-cn';
+import 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/dayjs/locale/zh-tw';
 import { RawIntlProvider, getLocale, getDirection , setIntl, getIntl, localeInfo, event, LANG_CHANGE_EVENT } from './localeExports';
 
 

@@ -9,6 +9,7 @@ import ZTable from '../components/ZTable'
 import ZModal from './ZModal'
 import JMenu from '../components/JMenu'
 import ZDrawer from './Deawer'
+import token from '../../utils/currentToken'
 
 const Index=()=>{
     const actionRef = useRef()
@@ -49,7 +50,8 @@ const Index=()=>{
       );
 
 
-    const giveOther=()=>{
+    const giveOther=(row)=>{
+      setDetail(row)
       setCheck('12')
       setModalOpen(true)
     }
@@ -159,7 +161,7 @@ const Index=()=>{
             {checkType=='1'&&<a key="goto" onClick={()=>{setCheck('11');setModalOpen(true);setDetail(row)}} >拆分 </a>}
             <a key="suyuan1" onClick={()=>suyuan(row)} >溯源</a>
             {checkType=='2'&&<a key="acc" onClick={()=>false} ><Popover content={()=>content(row)} >接收</Popover></a>}
-            {checkType=='1'&&<a key="to2" onClick={()=>giveOther()} >转让</a>}
+            {checkType=='1'&&<a key="to2" onClick={()=>giveOther(row)} >转让</a>}
             </Space>
             
           },
@@ -176,7 +178,7 @@ const Index=()=>{
            message:'请选择账户类型',
          },
        ]}
-       options={[ 'zhongxin','consumer','banks']}
+       options={[ 'smic','consumer','banks']}
       />
      )
      const items = [
@@ -392,13 +394,6 @@ const Index=()=>{
         </ProForm.Group>
       </div>,
       '12':<div>
-         <ProFormText 
-                    name="billNo"
-                    placeholder={'请输入票据单号'}
-                    label='票据单号'
-                    width={'sm'}
-                    rules={[{required: true, message:'请输入票据单号',},]}
-                /> 
            <ProFormText 
                     name="WaitEndorseCmID"
                     placeholder={'请输入银行工作人员的证件号'}
@@ -441,6 +436,7 @@ const Index=()=>{
       setSearch(values)
       console.log(checkType,values,)
       if(checkType=='4'){
+        values.types = token.getStore('type')
         const end = await queryMethod[checkType](values)
         const history = end.History?.map((item)=>{
             return {
@@ -454,6 +450,7 @@ const Index=()=>{
       }else if(checkType=='11'){
          values.oldbillNo=detail.BillInfoID
          console.log(values)
+         values.types = token.getStore('type')
          const end = await queryMethod[checkType](values)
          if(end['拆分票据状态']=='成功'){
             message.success('拆分成功')
@@ -462,16 +459,16 @@ const Index=()=>{
          }
       }else if(checkType=='12'){
         // values.types='zhongxin'
-        const data = values
-        data.types = 'zhongxin'
-        const end = await queryMethod[checkType](data)
+        values.types = token.getStore('type')
+        values.billNo=detail.BillInfoID
+        // data.types = token.getStore('type')
+        const end = await queryMethod[checkType](values)
         message.warning(end)
      }else if(checkType in ['1','2','3','5','6']){
         actionRef?.current?.reload();
       }else if(checkType =='13'||checkType=='14'){
         const data = values
-        console.log('123')
-        data.types = 'consumer'
+        data.types = token.getStore('type')
         data.BillInfoID=detail.BillInfoID
         const end = await queryMethod[checkType](data)
         message.warning(end)
@@ -504,7 +501,7 @@ const Index=()=>{
       ]
 
       const rule=async(params)=>{
-        const end = await queryMethod[checkType](serchInfo)
+        const end = await queryMethod[checkType]({...serchInfo,types:token.getStore('type')})
         return{ data:end}
       }
 

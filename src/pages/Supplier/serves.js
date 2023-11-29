@@ -18,7 +18,7 @@ export async function create(data) {
   //待接收
   export async function queryWaitAccept(data) {
     const form = new FormData()
-    form.append('types',data?.types||'consumer')
+    form.append('types',data?.types)
     return request('/hnuFinTechPlatform/supplyBlokchain/queryByWaitEndorseAcct', {
       method: 'POST',
       data:form,
@@ -29,7 +29,7 @@ export async function create(data) {
   //发行的
   export async function queryPublishAccept(data) {
     const form = new FormData()
-    form.append('types',data?.types||'zhongxin')
+    form.append('types',data?.types)
     return request('/hnuFinTechPlatform/supplyBlokchain/queryByDrwrAcct', {
       method: 'POST',
       data:form,
@@ -40,7 +40,7 @@ export async function create(data) {
   //拥有的
   export async function queryAcceptAccept(data) {
     const form = new FormData()
-    form.append('types',data?.types||'zhongxin')
+    form.append('types',data?.types)
     return request('/hnuFinTechPlatform/supplyBlokchain/queryByHoldrAcct', {
       method: 'POST',
       data:form,
