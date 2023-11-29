@@ -119,7 +119,7 @@ export async function queryHisByIdAndTime(data) {
       method: 'POST',
       data:form,
     }).catch((error)=> {
-        message.error('创建失败')
+        message.error('操作失败')
       });
   }
   export async function reject(data) {
@@ -131,6 +131,6 @@ export async function queryHisByIdAndTime(data) {
       method: 'POST',
       data:form,
     }).catch((error)=> {
-        message.error('创建失败')
+        message.error('操作失败')
       });
   }
