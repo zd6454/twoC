@@ -22,6 +22,8 @@ export default {
   'menu.co2.check': '审核',
   'menu.co2.records': '记录',
   'menu.supplier': '供应链金融',
+  'menu.supplier.create': '新建票据',
+  'menu.supplier.index': '票据管理',
   'menu.digit': '协同存储',
   'menu.model': '智能合约模板',
   'menu.opera': '区块链运维',

@@ -9,7 +9,7 @@ import JMenu from '../components/JMenu'
 import ZTable from '../components/ZTable'
 import ZModal from './ZModal'
 import token from  '../../utils/currentToken';
-import {type as Ztype} from './enum'
+import {type as Ztype, desc} from './enum'
 
 const Index=()=>{
     const formRef1 = useRef()
@@ -288,7 +288,6 @@ const Index=()=>{
       </Button>,
       ]
     const rule=async(params)=>{
-      console.log(searchInfo,'123')
         const end = await querAll(searchInfo)
         let data={};
         if(modelType==Ztype.PkGetSk){
@@ -373,7 +372,7 @@ const Index=()=>{
 
   // console.log(formRef2)
     return <PageContainer
-    content={'中间为三个并排的card，左边的card是文字存证，用户输入“作品名称”、“创作者”、“创作日期”，可产生对应hash值；同理，中间card是中型文件存储，产生hash和IPFS；右边card是大型文件存储，上传文件后，产生hash和HDFS。下边是效果展示，对上传的数据上面加一个湖南大学的章。'}
+    content={desc}
     >
         <Card title={'文件存储'} style={{marginBottom:20}} extra={
           <Space>
