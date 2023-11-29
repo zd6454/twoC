@@ -61,7 +61,18 @@ export default [
     path: '/supplier',
     name: 'supplier',
     icon: 'smile',
-    component: './Supplier',
+    routes: [
+      {
+        path: '/supplier/create',
+        name: 'create',
+        component: './Supplier/Create',
+      },
+      {
+        path: '/supplier/index',
+        name: 'index',
+        component: './Supplier',
+      },
+    ],
   },
   {
     path: '/digit',
