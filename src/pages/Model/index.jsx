@@ -64,7 +64,7 @@ const Index=()=>{
                 <Card 
                     key={index}
                     // vw自适应
-                    style={{width:'25vw'}} 
+                    style={{width:"fit-content"}} 
                     title={<Tag color="#f50" >{item.title}</Tag>} 
                     extra={<Button type="primary" size="small" onClick = {()=>handleClick(item.flag)}>下载</Button>} 
                     actions={ [<Meta
@@ -81,7 +81,7 @@ const Index=()=>{
                 
                 >
                     {/* {item.src} */}
-                    <img src={item.src} width="432px" height="300px"/>
+                    <img src={item.src} width="250px" height="170px"/>
                 </Card>
              </Col>
             )}

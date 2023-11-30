@@ -44,3 +44,47 @@ export async function networkStop(param) {
       message.error('关闭失败')
   });
 }
+
+export async function oneRestore(param) {
+  const patch={
+    '1': [
+      '/hnuFinTechPlatform/fedBlokchain/clearEnvironment',
+    ],
+    '2': [
+      '/hnuFinTechPlatform/carbonBlokchain/clearEnvironment',
+    ],
+    '3': [
+      '/hnuFinTechPlatform/supplyBlokchain/clearEnvironment',
+    ],
+    '4': [
+      '/hnuFinTechPlatform/storageBlokchain/clearEnvironment',
+    ]
+  };
+  return request(patch[param]?.[0], {
+    method: 'GET',
+  }).catch((error)=> {
+      message.error('还原失败')
+  });
+}
+
+export async function deployChain(param) {
+  const patch={
+    '1': [
+      '/hnuFinTechPlatform/fedBlokchain/deployChaincode',
+    ],
+    '2': [
+      '/hnuFinTechPlatform/carbonBlokchain/deployChaincode',
+    ],
+    '3': [
+      '/hnuFinTechPlatform/supplyBlokchain/deployChaincode',
+    ],
+    '4': [
+      '/hnuFinTechPlatform/storageBlokchain/deployChaincode',
+    ]
+  };
+  return request(patch[param]?.[0], {
+    method: 'GET',
+  }).catch((error)=> {
+      message.error('安装失败')
+  });
+}

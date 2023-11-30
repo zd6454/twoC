@@ -1,33 +1,33 @@
 import React from "react";
 import {Tabs,Space,Button} from 'antd'
-import {networkStop, networkStart} from './server'
+import {networkStop, networkStart, oneRestore, deployChain} from './server'
 
 const Index=(props)=>{
   const {flag} = props;
   const patch={
     '1':[
       'http://lidengjia.hnufintech.cn:20000/_utils',
-      'http://lidengjia.hnufintech.cn:20053/',
-      'http://lidengjia.hnufintech.cn:20050/',
-      'http://lidengjia.hnufintech.cn:20049/,'
+      'http://lidengjia.hnufintech.cn:20047/',
+      'http://lidengjia.hnufintech.cn:20044/',
+      'http://lidengjia.hnufintech.cn:20043/,'
     ],
     '2':[
-      'http://lidengjia.hnufintech.cn:20548/_utils',
-      'http://lidengjia.hnufintech.cn:20607/',
-      'http://lidengjia.hnufintech.cn:20604/',
-      'http://lidengjia.hnufintech.cn:20603/',
+      'http://lidengjia.hnufintech.cn:20500/_utils',
+      'http://lidengjia.hnufintech.cn:20547/',
+      'http://lidengjia.hnufintech.cn:20544/',
+      'http://lidengjia.hnufintech.cn:20543/',
     ],
     '3':[
-      'http://lidengjia.hnufintech.cn:20253/_utils',
-      'http://lidengjia.hnufintech.cn:20348/',
-      'http://lidengjia.hnufintech.cn:20345/',
-      'http://lidengjia.hnufintech.cn:20344/',
+      'http://lidengjia.hnufintech.cn:20247/_utils',
+      'http://lidengjia.hnufintech.cn:20300/',
+      'http://lidengjia.hnufintech.cn:20297/',
+      'http://lidengjia.hnufintech.cn:20296/',
     ],
     '4':[
-      'http://lidengjia.hnufintech.cn:20807/_utils',
-      'http://lidengjia.hnufintech.cn:20854/',
-      'http://lidengjia.hnufintech.cn:20851/',
-      'http://lidengjia.hnufintech.cn:20850/',
+      'http://lidengjia.hnufintech.cn:20500/_utils',
+      'http://lidengjia.hnufintech.cn:20547/',
+      'http://lidengjia.hnufintech.cn:20544/',
+      'http://lidengjia.hnufintech.cn:20543/',
     ]
   }
   return <div style={{position:"fixed",top:8,left:250,zIndex:150,}}>
@@ -60,6 +60,12 @@ const Index=(props)=>{
         <Button type="text" onClick={()=>{
           networkStop(flag)
         }}> 暂停网络</Button>
+        <Button type="text" onClick={()=>{
+          oneRestore(flag)
+        }}> 一键还原</Button>
+        <Button type="text" onClick={()=>{
+          deployChain(flag)
+        }}> 安装链码</Button>
       </Space>
   
     </Space>

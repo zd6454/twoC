@@ -53,22 +53,12 @@ const Index=()=>{
                 </Card>
             </Col>
             <Col className="gutter-row" span={10}>
-                <Card title='联邦学习' >
+                <Card title='聚合算法' >
                     <Radio.Group onChange={(e)=>onChange(4,e)} value={op4}>
                         <Radio value={1}>FedProx方法</Radio>
                         <Radio value={2}>FedNova方法</Radio>
                         <Radio value={3}>FedAvg方法</Radio>
                         <Radio value={4}>SCAFFOLD方法</Radio>
-                    </Radio.Group>
-                </Card>
-            </Col>
-            <Col className="gutter-row" span={10}>
-                <Card title='聚合算法' >
-                    <Radio.Group onChange={(e)=>onChange(5,e)} value={op5}>
-                        <Radio value={1}>直接聚合方法</Radio>
-                        <Radio value={2}>分组聚合方法</Radio>
-                        <Radio value={3}>窗口聚合方法</Radio>
-                        <Radio value={4}>多维聚合方法</Radio>
                     </Radio.Group>
                 </Card>
             </Col>
