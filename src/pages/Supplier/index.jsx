@@ -220,7 +220,6 @@ const Index=()=>{
                   },
                 ]}
               />
-         {typeSelect}
       </div>,
       '2':typeSelect,
       '3':typeSelect,
@@ -236,7 +235,7 @@ const Index=()=>{
                   },
                 ]}
               />
-        {typeSelect}
+        {/* {typeSelect} */}
       </div>,
       '5':<div>
         <ProFormText
@@ -250,7 +249,6 @@ const Index=()=>{
                   },
                 ]}
               />
-              {typeSelect}
       </div>,
       '6':<div>
          <ProFormText
@@ -276,7 +274,7 @@ const Index=()=>{
                   },
                 ]}
               />
-              {typeSelect}
+              {/* {typeSelect} */}
       </div>,
       '11':<div>
            <ProForm.Group>
@@ -434,7 +432,6 @@ const Index=()=>{
     }
     const handleOk=async(values)=>{
       setSearch(values)
-      console.log(checkType,values,)
       if(checkType=='4'){
         values.types = token.getStore('type')
         const end = await queryMethod[checkType](values)

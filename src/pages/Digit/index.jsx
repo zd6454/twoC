@@ -437,10 +437,7 @@ const Index=()=>{
                               <Button onClick={async()=>{
                                  const end =await downloadFile({filename:item.videoName})
                                 //  videos[index].url=end;
-                                 const videoURL = new File([end],'file', {type: 'video/mp4' });;
-                                 const blob = new Blob([end], {type: 'video/mp4'});
-                                 console.log(videoURL,'videoURL',blob,end)
-                                  setVideoUrl(end)
+                                  setVideoUrl(end.download_url)
                                   setModelType(Ztype.VideoCheck)
                                   setIsModalOpen(true)
                               }}>播放视频</Button>
