@@ -102,11 +102,6 @@ export default [
         name: 'index',
         component: './Opera',
       },
-      {
-        path: '/opera/jc',
-        name: 'jc',
-        component: './Opera/JTuopu',
-      },
     ]
   },
   {

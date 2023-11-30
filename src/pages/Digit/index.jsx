@@ -51,6 +51,7 @@ const Index=()=>{
     const onfinish=async(values)=>{
       values.file = values.file[0].originFileObj
        const end = await uploadFile(values)
+       message.success(end)
     }
     const columns=[
         {
