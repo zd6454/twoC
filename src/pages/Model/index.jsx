@@ -1,15 +1,19 @@
-import React from "react";
+import React,{ useState } from "react";
 import { PageContainer} from '@ant-design/pro-components';
-import { Button, Card ,Avatar,Row,Col, Space,Tag } from "antd";
+import { Button, Card ,Avatar,Row,Col, Space,Tag ,message} from "antd";
 import {downloadQuery} from './serves';
 const { Meta } = Card;
 import JMenu from '../components/JMenu';
+import Zmodal from './Zmodal'
 import p0 from './images/p0.jpg';
 import p1 from './images/p1.jpg';
 import p2 from './images/p2.jpg';
 import p3 from './images/p3.jpg';
 
 const Index=()=>{
+    const [isModalOpen,setOpen] = useState(false)
+    const [info,setInfo] = useState(null)
+
     const data=[
         {
             title:'存件存证智能合约',
@@ -41,7 +45,7 @@ const Index=()=>{
         },
     ]
     // 根据模板类型获取对应下载链接
-    const handleClick = (flag) => {
+    const handleClick = async(flag) => {
         let param = "";
         if(flag == 0){
             param = "/hnuFinTechPlatform/smartContract/certificate";
@@ -53,8 +57,14 @@ const Index=()=>{
             param = "/hnuFinTechPlatform/smartContract/stateTransfer";
         }
         if(param){
-            console.log(param)
-            downloadQuery(param);
+            const end = await  downloadQuery(param);
+            if(end.code){
+                setInfo(end?.code)
+                setOpen(true)
+            }else{
+              message.warning('下载出错')
+            }
+           
         }
     }
     return <PageContainer>
@@ -88,6 +98,11 @@ const Index=()=>{
             
         </Row>
         <JMenu/>
+        <Zmodal
+         isModalOpen={isModalOpen}
+         setOpen={setOpen}
+         info={info}
+        />
     </PageContainer>
 }
 export default Index
