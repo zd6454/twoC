@@ -181,20 +181,38 @@ const Index=()=>{
        options={[ 'smic','consumer','banks']}
       />
      )
-     const items = [
-      {
-        key: '1',
-        label: '已接收',
-      },
-      {
-        key: '2',
-        label: '待接收',
-      },
-      {
-        key: '3',
-        label: '已发布',
-      },
-    ];
+    const items={
+      'smic':[
+        {
+          key: '1',
+          label: '已接收',
+        },
+        {
+          key: '3',
+          label: '已发布',
+        },
+      ],
+      'consumer':[
+        {
+          key: '1',
+          label: '已接收',
+        },
+        {
+          key: '2',
+          label: '待接收',
+        },
+      ],
+      'banks':[
+        {
+          key: '1',
+          label: '已接收',
+        },
+        {
+          key: '2',
+          label: '待接收',
+        },
+      ]
+    }
     const  itemRender={
       '1':<div>
          <ProFormText
@@ -220,7 +238,6 @@ const Index=()=>{
                   },
                 ]}
               />
-         {typeSelect}
       </div>,
       '2':typeSelect,
       '3':typeSelect,
@@ -236,7 +253,7 @@ const Index=()=>{
                   },
                 ]}
               />
-        {typeSelect}
+        {/* {typeSelect} */}
       </div>,
       '5':<div>
         <ProFormText
@@ -250,7 +267,6 @@ const Index=()=>{
                   },
                 ]}
               />
-              {typeSelect}
       </div>,
       '6':<div>
          <ProFormText
@@ -276,7 +292,7 @@ const Index=()=>{
                   },
                 ]}
               />
-              {typeSelect}
+              {/* {typeSelect} */}
       </div>,
       '11':<div>
            <ProForm.Group>
@@ -383,14 +399,6 @@ const Index=()=>{
                     width={'sm'}
                     rules={[{required: true, message:'请输入当前持票人名称',},]}
                 /> 
-           <ProFormText 
-                    name="types"
-                    placeholder={'请输入sdk调用者'}
-                    label='sdk调用者'
-                    initialValue={'zhongxin'}
-                    width={'sm'}
-                    rules={[{required: true, message:'请输入sdk调用者',},]}
-                /> 
         </ProForm.Group>
       </div>,
       '12':<div>
@@ -434,7 +442,6 @@ const Index=()=>{
     }
     const handleOk=async(values)=>{
       setSearch(values)
-      console.log(checkType,values,)
       if(checkType=='4'){
         values.types = token.getStore('type')
         const end = await queryMethod[checkType](values)
@@ -449,7 +456,6 @@ const Index=()=>{
         setOpen(true)
       }else if(checkType=='11'){
          values.oldbillNo=detail.BillInfoID
-         console.log(values)
          values.types = token.getStore('type')
          const end = await queryMethod[checkType](values)
          if(end['拆分票据状态']=='成功'){
@@ -507,7 +513,7 @@ const Index=()=>{
 
     return <PageContainer>
         <ZTable
-           title={<Tabs defaultActiveKey="1" items={items} onChange={(e)=>{
+           title={<Tabs defaultActiveKey="1" items={items[token.getStore('type')]} onChange={(e)=>{
              setCheck(e);
              actionRef?.current.reload()
            }} />}
@@ -524,6 +530,7 @@ const Index=()=>{
        isModalOpen={createModalOpen}
        setIsModalOpen={setModalOpen}
        handleOk={handleOk}
+       detail={detail}
        checkType={checkType}
        title={'查询'}
        modeItem={itemRender[checkType]}

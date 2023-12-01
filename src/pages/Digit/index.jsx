@@ -51,6 +51,7 @@ const Index=()=>{
     const onfinish=async(values)=>{
       values.file = values.file[0].originFileObj
        const end = await uploadFile(values)
+       message.success(end)
     }
     const columns=[
         {
@@ -84,6 +85,7 @@ const Index=()=>{
           dataIndex: 'startDate',
           valueType: 'text',
           hideInSearch:true,
+
       },
         {
             title:'操作',
@@ -437,10 +439,7 @@ const Index=()=>{
                               <Button onClick={async()=>{
                                  const end =await downloadFile({filename:item.videoName})
                                 //  videos[index].url=end;
-                                 const videoURL = new File([end],'file', {type: 'video/mp4' });;
-                                 const blob = new Blob([end], {type: 'video/mp4'});
-                                 console.log(videoURL,'videoURL',blob,end)
-                                  setVideoUrl(end)
+                                  setVideoUrl(end.download_url)
                                   setModelType(Ztype.VideoCheck)
                                   setIsModalOpen(true)
                               }}>播放视频</Button>

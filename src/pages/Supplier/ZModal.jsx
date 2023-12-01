@@ -1,12 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Modal } from "antd";
 import { ProForm} from '@ant-design/pro-components';
+import { forEach } from "lodash";
 const Index=( props)=>{
-    const {title='default',formRef,isModalOpen,setIsModalOpen,handleOk,modeItem,checkType}=props;
+    const {title='default',formRef,isModalOpen,setIsModalOpen,handleOk,modeItem,checkType,detail}=props;
     
       const handleCancel = () => {
         setIsModalOpen(false);
       };
+
+      useEffect(()=>{
+        console.log(detail,formRef)
+        formRef?.current?.setFieldsValue(detail)
+      },[detail])
+
     return <Modal
        title={title}
        open={isModalOpen} 

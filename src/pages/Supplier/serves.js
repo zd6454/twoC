@@ -89,7 +89,7 @@ export async function queryHisByIdAndTime(data) {
     for(let item in data){
       form.append(item,data[item])
   }
-    return request('/hnuFinTechPlatform/supplyBlokchain/accept', {
+    return request('/hnuFinTechPlatform/supplyBlokchain/splitBills', {
       method: 'POST',
       data:form,
     }).catch((error)=> {

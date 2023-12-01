@@ -91,6 +91,7 @@ export default [
       {
         path: '/supplier/create',
         name: 'create',
+        canAdmin:'smic',
         component: './Supplier/Create',
       },
       {

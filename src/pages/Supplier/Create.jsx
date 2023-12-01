@@ -2,11 +2,14 @@ import React,{useRef} from "react";
 import { PageContainer, ProForm, ProFormText,ProFormDatePicker} from '@ant-design/pro-components';
 import {Button, Card, Space,message} from 'antd'
 import {create} from './serves'
+import token from '../../utils/currentToken'
 
 const Index=()=>{
+    
     const formRef = useRef()
 
     const handleOk=async(values)=>{
+        values.types= token.getStore('type')
         const end = await create(values)
         if(end['发行票据状态']=='成功'){
             message.success('创建成功')
@@ -125,14 +128,6 @@ const Index=()=>{
                     label='当前持票人名称'
                     width={'md'}
                     rules={[{required: true, message:'请输入当前持票人名称',},]}
-                /> 
-           <ProFormText 
-                    name="types"
-                    placeholder={'请输入sdk调用者'}
-                    label='sdk调用者'
-                    initialValue={'zhongxin'}
-                    width={'md'}
-                    rules={[{required: true, message:'请输入sdk调用者',},]}
                 /> 
         </ProForm.Group>
         <Space style={{marginRight:200,float:'right'}}>

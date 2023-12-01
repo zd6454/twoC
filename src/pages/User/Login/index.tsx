@@ -161,9 +161,11 @@ const Login: React.FC = () => {
           message.success('注册成功');
           setType('account')
           return;
+        }else{
+          message.success(msg.message)
         }
          } catch (error) {
-            message.error('注册失败');
+            // message.error('注册失败');
          }
     }
 
@@ -175,8 +177,8 @@ const Login: React.FC = () => {
   return (
     <div style={{position:'relative',overflow:'hidden'}}>
      <div style={{display:'flex',justifyContent:'space-around'}}>
-     <Image  style={{width:'100vw',height:'100vh',position:'absolute',top:0,left:-41}}  preview={false} src={Zmgbg} />
-      <div style={{padding:'56px 0'}}>
+     {/* <Image  style={{width:'100vw',height:'100vh',position:'absolute',top:0,left:-41}}  preview={false} src={Zmgbg} /> */}
+      <div style={{padding:'56px 0',marginTop:20}}>
          <Carousel autoplay style={{width:800,display:'block'}}>
           <div>
            <Image  preview={false} width={800} src={Zmg1}> </Image>
