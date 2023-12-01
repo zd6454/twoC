@@ -239,6 +239,11 @@ const Index=()=>{
 
     // 所有发行货币获取
     const ruleAll = async() => {
+      if(token.getStore('type') != "government"){
+        message.error("只有government账户可用！")
+        alert("此功能需government用户方可使用！")
+        return
+      }
       const end = await showAllToken({types:token.getStore('type')})
      
       if(end){
