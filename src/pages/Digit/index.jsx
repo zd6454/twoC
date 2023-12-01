@@ -85,6 +85,7 @@ const Index=()=>{
           dataIndex: 'startDate',
           valueType: 'text',
           hideInSearch:true,
+
       },
         {
             title:'操作',

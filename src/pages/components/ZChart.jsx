@@ -1,54 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/plots';
 
-const Index = () => {
-  const data = [
-    {
-      year: '1991',
-      value: 3,
-    },
-    {
-      year: '1992',
-      value: 4,
-    },
-    {
-      year: '1993',
-      value: 3.5,
-    },
-    {
-      year: '1994',
-      value: 5,
-    },
-    {
-      year: '1995',
-      value: 4.9,
-    },
-    {
-      year: '1996',
-      value: 6,
-    },
-    {
-      year: '1997',
-      value: 7,
-    },
-    {
-      year: '1998',
-      value: 9,
-    },
-    {
-      year: '1999',
-      value: 13,
-    },
-  ];
+const Index = (props) => {
+  const {dataSource}=props
   const config = {
-    data,
-    xField: 'year',
-    yField: 'value',
+    data:dataSource,
+    xField: 'RoundNumber',
+    yField: 'Loss',
     label: {},
     width: 800,
     height:200,
     point: {
-      size: 5,
+      size: 0.1,
       shape: 'diamond',
       style: {
         fill: 'white',
@@ -56,7 +19,17 @@ const Index = () => {
         lineWidth: 2,
       },
     },
+    yAxis: {
+      label: {
+        // 数值格式化为千分位
+        formatter: (v) =>{
+          console.log(v)
+          return v
+        },
+      },
+    },
     tooltip: {
+      fields: ['RoundNumber', 'Loss','Accuracy','KS','AUC','Weights'],
       showMarkers: false,
     },
     state: {
