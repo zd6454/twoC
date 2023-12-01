@@ -17,6 +17,7 @@ const Index=()=>{
     const [op5,setop5] = useState(1)
     const [dataSource,setData] = useState([])
     const [spins,setSpin]= useState(false)
+    const [percent,setPercent] = useState(0)
 
     const option={1:setop1,2:setop2,3:setop3,4:setop4,5:setop5}
     const onChange=(type,e)=>{
@@ -73,6 +74,7 @@ const Index=()=>{
           const end = await train(values)
           if(end.output){
             message.success(end.output)
+            setPercent(60)
         }
        })
     
@@ -160,7 +162,7 @@ const Index=()=>{
                 </Card> */}
         </Card>
         <Card style={{marginTop:20}} title={'训练进度'}>
-          <Progress percent={50} status="active" />
+          <Progress percent={percent} status="active" />
         </Card>
         <JMenu
           flag={flag}  //传递参数
