@@ -209,6 +209,10 @@ const Index=()=>{
     ];
 
     const rule = async (params) => {
+      if(token.getStore('type') != "government"){
+        message.warning("暂无权限") 
+        return;
+      }
       if(checkType=='3'){
         const end = await queryMethod[checkType]({...serchInfo,types:token.getStore('type')});
         const arr = [];

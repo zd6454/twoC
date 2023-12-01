@@ -23,7 +23,7 @@ const Index=()=>{
     const [pk,setPk] = useState('')
     const [videos,setVideos] = useState(null)
     const [byaccount,setAccount] = useState('')
-    const [videoUrl,setVideoUrl] = useState('')
+    const [videoUrl,setVideoUrl] = useState(null)
 
     const steps={
         [Ztype.CreatPk]:'创建公私钥对',
@@ -121,7 +121,7 @@ const Index=()=>{
      />
     )
     const VideoItem=(
-      <video  loop  controls = {true}  style={{width:'100%',}} >
+      <video  loop  controls = {true}  style={{width:'100%',}}  >
           <source type='video/mp4' src={videoUrl}  />
       </video>
     )
@@ -228,7 +228,7 @@ const Index=()=>{
                 {typeSelect}
         </div>,
       [Ztype.VideoByType]:typeSelect,
-      [Ztype.VideoCheck] :VideoItem,
+      [Ztype.VideoCheck] :videoUrl?VideoItem:null,
     }
     const toolBar=() => [
         <Button
@@ -372,7 +372,12 @@ const Index=()=>{
     setModelType(type)
     modelRef?.current?.resetFields()
   }
-
+  const handleCancel=()=>{
+    setIsModalOpen(false)
+    setVideoUrl(null)
+    setModelType('1')
+    modelRef?.current?.resetFields()
+  }
   // console.log(formRef2)
     return <PageContainer
     content={desc}
@@ -473,6 +478,7 @@ const Index=()=>{
         setIsModalOpen={setIsModalOpen}
         handleOk={handleOk}
         title={steps[modelType]}
+        handleCancel={handleCancel}
         formRef={modelRef}
         modeItem={modelItem[modelType]}
       />

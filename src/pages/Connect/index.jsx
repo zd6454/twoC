@@ -132,13 +132,13 @@ const Index=()=>{
             title={'数据展示'}  
             extra={<Space>
                 <Upload 
-                name="trainData"
-                data={{types:token.getStore('type')}}
+                // name="trainData"
+                // data={{types:token.getStore('type')}}
                 onChange={onChangeFile}
-                headers = {{
-                    authorization: 'authorization-text',
-                  }}
-                method="POST"
+                // headers = {{
+                //     authorization: 'authorization-text',
+                //   }}
+                // method="POST"
                 maxCount={1}
                 // action='https://lidengjia.hnufintech.cn/hnuFinTechPlatform/fedBlokchain/traindataUpload'
                 >

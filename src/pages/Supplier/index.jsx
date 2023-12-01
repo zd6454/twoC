@@ -507,8 +507,12 @@ const Index=()=>{
       ]
 
       const rule=async(params)=>{
-        const end = await queryMethod[checkType]({...serchInfo,types:token.getStore('type')})
-        return{ data:end}
+          if(token.getStore('type')=='smic'||token.getStore('type')=='consumer'||token.getStore('type')=='banks'){
+            const end = await queryMethod[checkType]({...serchInfo,types:token.getStore('type')})
+            return{ data:end}
+          }
+           
+       
       }
 
     return <PageContainer>
