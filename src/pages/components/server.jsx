@@ -88,3 +88,12 @@ export async function deployChain(param) {
       message.error('安装失败')
   });
 }
+
+export async function showHomePage() {
+  return request(":6001/webui", {
+    method: 'GET',
+    type:'no'
+  }).catch((error)=> {
+      message.error('主页显示失败')
+  });
+}

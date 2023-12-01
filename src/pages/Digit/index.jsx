@@ -19,7 +19,7 @@ const Index=()=>{
     const [flag,setFlag] = useState('4')
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modelType, setModelType] = useState('1');
-    const [searchInfo,setSearch] = useState({})
+    const [searchInfo,setSearch] = useState(null)
     const [pk,setPk] = useState('')
     const [videos,setVideos] = useState(null)
     const [byaccount,setAccount] = useState('')
@@ -290,6 +290,7 @@ const Index=()=>{
       </Button>,
       ]
     const rule=async(params)=>{
+        if(!searchInfo) return
         const end = await querAll(searchInfo)
         let data={};
         if(modelType==Ztype.PkGetSk){

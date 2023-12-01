@@ -88,8 +88,12 @@ export const errorConfig: RequestConfig = {
   // 请求拦截器
   requestInterceptors: [
     (config: RequestOptions) => {
+      let http='http'
+      if(!config.type){
+        http+='s'
+      }
       // 拦截请求配置，进行个性化处理。
-      let url = 'https://lidengjia.hnufintech.cn'+config?.url
+      let url = http +'://lidengjia.hnufintech.cn'+config?.url
       // const url = config?.url?.concat('?token = 123');
       return { ...config, url };
     },

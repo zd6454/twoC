@@ -271,18 +271,18 @@ const Index=()=>{
           key = "primary"
           onClick = {handleClick3}
       > 
-      <PlusOutlined /> {'增加'}
+      <PlusOutlined /> {'新建'}
       </Button>,
-      <Button
-          onClick = {handleClick4}
-      > 
-      {'暂停'}
-      </Button>,
-      <Button
-          onClick = {handleClick5}
-      > 
-      {'重启'}
-      </Button>,
+      // <Button
+      //     onClick = {handleClick4}
+      // > 
+      // {'暂停'}
+      // </Button>,
+      // <Button
+      //     onClick = {handleClick5}
+      // > 
+      // {'重启'}
+      // </Button>,
     ]
 
     // 针对docker
@@ -361,7 +361,6 @@ const Index=()=>{
         }
       }
 
-
       const handleChange = (info) => {
           let newFileList = [...info.fileList];
           newFileList = newFileList.slice(-2);
@@ -374,6 +373,7 @@ const Index=()=>{
           setFileList(newFileList);
           console.log(newFileList,'newfile')
       };
+
       const props = {
           onChange: handleChange,
           multiple: true,
