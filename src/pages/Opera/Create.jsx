@@ -28,44 +28,44 @@ const Index=()=>{
                 width="md"
                 // name="money"
                 name="networkName"
-                label="networkName"
-                placeholder="请输入网络"
+                label="网络名称"
+                placeholder="请输入networkName"
             />
             <ProFormText
                 width="md"
                 name="channelName"
-                label="channelName"
-                placeholder="请输入通道"
+                label="通道名称"
+                placeholder="请输入channelName"
             />
             <ProFormText
                 width="md"
                 name="channelorganizations"
-                label="channelorganizations"
-                placeholder="请输入通道组织名字"
+                label="通道组织"
+                placeholder="请输入channelorganizations"
             />
             <ProFormText
                 width="md"
                 name="organizations"
-                label="organizations"
-                placeholder="请输入组织名字"
+                label="组织名称"
+                placeholder="请输入organizations"
             />
             <ProFormText
                 width="md"
                 name="domain"
-                label="domain"
-                placeholder="请输入域名"
+                label="对应域名"
+                placeholder="请输入domain"
             />
             <ProFormText
                 width="md"
                 name="peerCount"
-                label="peerCount"
-                placeholder="请输入节点数"
+                label="节点数目"
+                placeholder="请输入peerCount"
             />
             <ProFormText
                 width="md"
                 name="userCount"
-                label="userCount"
-                placeholder="请输入用户数"
+                label="用户数目"
+                placeholder="请输入userCount"
             />
         </ProForm>
         </Card>

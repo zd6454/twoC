@@ -28,6 +28,7 @@ import token from  '../../../utils/currentToken';
 import Zmgbg from '../../Asserts/bg.png';
 import Zmg1 from '../../Asserts/1.png';
 import Zmg2 from '../../Asserts/2.png';
+import Zmg3 from '../../Asserts/3.png';
 
 const ActionIcons = () => {
   const langClassName = useEmotionCss(({ token }) => {
@@ -175,16 +176,19 @@ const Login: React.FC = () => {
 
   const buttonText ={'account':'登录','mobile':'注册'}
   return (
-    <div style={{position:'relative',overflow:'hidden'}}>
+    <div style={{position:'relative',overflow:'hidden',backgroundColor:'rgb(230, 230, 247)'}}>
      <div style={{display:'flex',justifyContent:'space-around'}}>
      {/* <Image  style={{width:'100vw',height:'100vh',position:'absolute',top:0,left:-41}}  preview={false} src={Zmgbg} /> */}
-      <div style={{padding:'56px 0',marginTop:20}}>
+      <div style={{padding:'56px 0',marginTop:40}}>
          <Carousel autoplay style={{width:800,display:'block'}}>
           <div>
            <Image  preview={false} width={800} src={Zmg1}> </Image>
           </div>
           <div>
            <Image  preview={false} width={800} src={Zmg2}> </Image>
+          </div>
+          <div>
+           <Image  preview={false} width={800} src={Zmg3}> </Image>
           </div>
        </Carousel>
       </div>

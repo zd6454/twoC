@@ -179,7 +179,7 @@ const Welcome: React.FC = () => {
             湖南大学工商管理学院坐落于苍翠拱卫的岳麓山畔，毗邻传承千年中华文脉的岳麓书院，素有“千年学府，百年商学”之美誉。
             始终坚持人才培养中心地位，加强商科建设和特色发展，做精本科教育，创新教学模式，不断提升新时代经世致用商学领军人才培养质量，全面推进建设中国特色世界一流商学院。
           </p>
-            <img  style={{position:'absolute',right:101,top:0,width:127}}   src={logo} />
+            <img  style={{position:'absolute',right:60,top:0,width:120}}   src={logo} />
           
           <div
             style={{

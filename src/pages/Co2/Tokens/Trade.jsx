@@ -61,7 +61,7 @@ const Index=()=>{
                       setParam1(values)
                       // 重新调用rule方法
                       actionRef.current.reload()
-                      message.success('提交成功');
+                      message.success('操作成功');
                   }}
               >
                   <Space>

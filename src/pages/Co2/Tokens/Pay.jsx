@@ -1,7 +1,7 @@
 
 import React,{useState,useRef} from "react";
 import { PageContainer, ProForm ,ProFormSelect,ProFormDatePicker,ProFormText} from '@ant-design/pro-components';
-import {Card} from 'antd'
+import {Card, message} from 'antd'
 import JMenu from '../../components/JMenu'
 import {pay} from './serves'
 

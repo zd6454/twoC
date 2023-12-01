@@ -3,7 +3,7 @@
 import {
   IntlCache,
   createIntl,
-} from 'D:/forWorks/外包/双碳系统/system2/twoC/node_modules/@umijs/plugins/node_modules/react-intl';
+} from 'D:/study/study_2/CC/twoC/node_modules/@umijs/plugins/node_modules/react-intl';
 type OptionalIntlConfig = Omit<Parameters<typeof createIntl>[0], 'locale' | 'defaultLocale'>;
 export interface IRuntimeConfig {
     locale?: {

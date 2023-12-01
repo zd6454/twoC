@@ -90,8 +90,9 @@ export async function deployChain(param) {
 }
 
 export async function showHomePage() {
-  return request("http://lidengjia.hnufintech.cn:6001/webui", {
+  return request(":6001/webui", {
     method: 'GET',
+    type:'no'
   }).catch((error)=> {
       message.error('主页显示失败')
   });
