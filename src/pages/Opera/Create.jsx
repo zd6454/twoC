@@ -8,9 +8,6 @@ import JMenu from '../components/JMenu'
 const Index=()=>{
     const formRef= useRef()
 
-    const onfinish=()=>{
-        
-    }
     return <PageContainer>
         <Card style={{width:500,margin:'0 auto'}}>
         <ProForm
@@ -20,7 +17,7 @@ const Index=()=>{
             onFinish={async (values) => {
                 console.log(values)
                 await add(values);
-                message.success('tips')
+                message.success('新建成功')
             }}
             submitter={{
                 render: (_, dom) => <div style={{float:'right'}}>{dom[1]}</div>,

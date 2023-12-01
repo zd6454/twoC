@@ -32,76 +32,22 @@ export async function querAll(data){
     }
 }
 
-  export async function querBank(data) {
-    const params={
-        size:100||null,
-        page:1
-    }
-    return request('/question_bank/query_list', {
-      method: 'POST',
-      data:params
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-
-  export async function querquizs(data) {
-    const params={
-        id:data.id
-    }
-    return request('/paper/query_by_id', {
-      method: 'POST',
-      data:params
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-  export async function querrecords(data) {
-    const params={
-        id:data.id
-    }
-    return request('/record/query_by_paper_id', {
-      method: 'POST',
-      data:params
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-  export async function querranks(data) {
-    const params={
-        id:data.id
-    }
-    return request('/record/get_rank_by_paper_id', {
-      method: 'POST',
-      data:params
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-  export async function quernums(data) {
-    return request('/record/get_all_paper_finish_num', {
-      method: 'GET',
-    }).catch((error)=> {
-        message.error('获取失败')
-      });
-  }
-
-export async function add(data1, data2) {
+export async function add(data) {
     const params ={
         "types": "admin",
-        "networkName": data1.network,
-        "channelName": data1.channel,
+        "networkName": data.networkName,
+        "channelName": data.channelName,
         "organizations":[
           {
-            "name": data2.Name,
-            "domain": data2.Domain,
-            "peerCount": parseInt(data2.PeerCount),
-            "userCount": parseInt(data2.UserCount)
+            "name": data.organizations,
+            "domain": data.domain,
+            "peerCount": parseInt(data.peerCount),
+            "userCount": parseInt(data.userCount)
           },
         ],
         "channelorganizations":[
           {
-            "name": data2.Name
+            "name": data.channelorganizations
           }
         ],
     }
@@ -179,3 +125,5 @@ export async function add(data1, data2) {
         message.error('删除失败')
       });
   }
+
+  // 

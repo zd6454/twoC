@@ -38,22 +38,48 @@ export default [
     path: '/co2',
     name: 'co2',
     icon: 'smile',
-    // component: './Co2',
     routes: [
       {
-        path: '/co2/create',
-        name: 'create',
-        component: './Co2/Create',
+        path: '/co2/audit',
+        name: 'audit',
+        routes:[
+          {
+            path: '/co2/audit/create',
+            name: 'create',
+            component: './Co2/Audit/Create',
+          },
+          {
+            path: '/co2/audit/search',
+            name: 'search',
+            component: './Co2/Audit/Search',
+          },
+        ],
       },
       {
-        path: '/co2/search',
-        name: 'search',
-        component: './Co2/Search',
-      },
-      {
-        path: '/co2/records',
-        name: 'records',
-        component: './Co2/Records',
+        path: '/co2/tokens',
+        name: 'tokens',
+        routes:[
+          {
+            path: '/co2/tokens/create',
+            name: 'create',
+            component: './Co2/Tokens/Create',
+          },
+          {
+            path: '/co2/tokens/search',
+            name: 'search',
+            component: './Co2/Tokens/Search',
+          },
+          {
+            path: '/co2/tokens/pay',
+            name: 'pay',
+            component: './Co2/Tokens/Pay',
+          },
+          {
+            path: '/co2/tokens/trade',
+            name: 'trade',
+            component: './Co2/Tokens/Trade',
+          },
+        ],
       },
     ],
   },
@@ -100,11 +126,6 @@ export default [
         path: '/opera/index',
         name: 'index',
         component: './Opera',
-      },
-      {
-        path: '/opera/jc',
-        name: 'jc',
-        component: './Opera/JTuopu',
       },
     ]
   },

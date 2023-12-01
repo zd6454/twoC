@@ -1,6 +1,6 @@
 import React from "react";
 import {Tabs,Space,Button} from 'antd'
-import {networkStop, networkStart, oneRestore, deployChain} from './server'
+import {networkStop, networkStart, oneRestore, deployChain, showHomePage} from './server'
 
 const Index=(props)=>{
   const {flag} = props;
@@ -13,9 +13,9 @@ const Index=(props)=>{
     ],
     '2':[
       'http://lidengjia.hnufintech.cn:20500/_utils',
-      'http://lidengjia.hnufintech.cn:20547/',
-      'http://lidengjia.hnufintech.cn:20544/',
-      'http://lidengjia.hnufintech.cn:20543/',
+      'http://lidengjia.hnufintech.cn:20535/',
+      'http://lidengjia.hnufintech.cn:20532/',
+      'http://lidengjia.hnufintech.cn:20531/',
     ],
     '3':[
       'http://lidengjia.hnufintech.cn:20247/_utils',
@@ -24,10 +24,10 @@ const Index=(props)=>{
       'http://lidengjia.hnufintech.cn:20296/',
     ],
     '4':[
-      'http://lidengjia.hnufintech.cn:20500/_utils',
-      'http://lidengjia.hnufintech.cn:20547/',
-      'http://lidengjia.hnufintech.cn:20544/',
-      'http://lidengjia.hnufintech.cn:20543/',
+      'http://lidengjia.hnufintech.cn:20735/_utils',
+      'http://lidengjia.hnufintech.cn:20782/',
+      'http://lidengjia.hnufintech.cn:20779/',
+      'http://lidengjia.hnufintech.cn:20778/',
     ]
   }
   return <div style={{position:"fixed",top:8,left:250,zIndex:150,}}>
